@@ -16,7 +16,10 @@ function App() {
   const [filteredMovies, setFilteredMovies] = useState(movies)
 
   useEffect(() => {
-    console.log(`genre changed: ${genre}`)
+    const filtered = movies.filter((element) =>
+      element.genre.includes(genre)
+    )
+    setFilteredMovies(filtered)
   }, [genre])
 
   return (
