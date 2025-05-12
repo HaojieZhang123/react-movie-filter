@@ -34,21 +34,29 @@ function App() {
     setNewGenre('');
   }
 
-  // filtro dell'array movies a seconda di genre. Restituire il risultato a filteredMovies per essere mostrato a schermo
-  useEffect(() => {
-    const filtered = movies.filter((element) =>
-      element.genre.includes(genre)
-    )
-    setFilteredMovies(filtered)
-  }, [movies, genre])
+  // // filtro dell'array movies a seconda di genre. Restituire il risultato a filteredMovies per essere mostrato a schermo
+  // useEffect(() => {
+  //   const filtered = movies.filter((element) =>
+  //     element.genre.includes(genre)
+  //   )
+  //   setFilteredMovies(filtered)
+  // }, [movies, genre])
 
-  // filtro per titolo, stessa idea di genere, applicato con lowercase per essere case insensitive
+  // // filtro per titolo, stessa idea di genere, applicato con lowercase per essere case insensitive
+  // useEffect(() => {
+  //   const filtered = movies.filter((element) =>
+  //     element.title.toLowerCase().includes(search.toLowerCase())
+  //   )
+  //   setFilteredMovies(filtered)
+  // }, [movies, search])
+
+  // doppio filtro, sia genere sia titolo
   useEffect(() => {
     const filtered = movies.filter((element) =>
-      element.title.toLowerCase().includes(search.toLowerCase())
+      element.genre.includes(genre) && element.title.toLowerCase().includes(search.toLowerCase())
     )
     setFilteredMovies(filtered)
-  }, [movies, search])
+  }, [movies, genre, search])
 
   return (
     <>
