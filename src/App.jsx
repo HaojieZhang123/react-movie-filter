@@ -1,33 +1,41 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+const movieArray = [
+  { title: 'Inception', genre: 'Fantascienza' },
+  { title: 'Il Padrino', genre: 'Thriller' },
+  { title: 'Titanic', genre: 'Romantico' },
+  { title: 'Batman', genre: 'Azione' },
+  { title: 'Interstellar', genre: 'Fantascienza' },
+  { title: 'Pulp Fiction', genre: 'Thriller' },
+]
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1>Movies</h1>
+
+      <div className="search-box">
+
+        <input type="text" />
+
+        <select name="genre" id='genre-filter'>
+          <option value="Fantascienza">Fantascienza</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Romantico">Romantico</option>
+          <option value="Azione">Azione</option>
+        </select>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div className="movie-container">
+        <ul>
+          {movieArray.map((element, index) => (
+            <li key={`movie-${index}`}>
+              {element.title}
+            </li>
+          ))}
+        </ul>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
