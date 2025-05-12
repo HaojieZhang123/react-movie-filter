@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Header from './components/Header';
 
 // array iniziale
 const movieArray = [
@@ -21,13 +22,24 @@ function App() {
   // array con i film filtrati, e quelli mostrati in pagina
   const [filteredMovies, setFilteredMovies] = useState(movies);
 
+  // Adding new entries
+  const [newTitle, setNewTitle] = useState('');
+  const [newGenre, setNewGenre] = useState('');
+  const addNewMovie = (e) => {
+    e.preventDefault();
+    const newMovie = { title: newTitle, genre: newGenre };
+    setMovies([...movies, newMovie]);
+    setNewTitle('');
+    setNewGenre('');
+  }
+
   // filtro dell'array movies a seconda di genre. Restituire il risultato a filteredMovies per essere mostrato a schermo
   useEffect(() => {
     const filtered = movies.filter((element) =>
       element.genre.includes(genre)
     )
     setFilteredMovies(filtered)
-  }, [genre])
+  }, [movies, genre])
 
   // filtro per titolo, stessa idea di genere, applicato con lowercase per essere case insensitive
   useEffect(() => {
@@ -35,11 +47,11 @@ function App() {
       element.title.toLowerCase().includes(search.toLowerCase())
     )
     setFilteredMovies(filtered)
-  }, [search])
+  }, [movies, search])
 
   return (
     <>
-      <h1>Movies</h1>
+      <Header />
 
       {/* Box di ricerca */}
       <div className="search-box">
@@ -77,6 +89,20 @@ function App() {
           ))}
         </ul>
       </div>
+
+      <form onSubmit={addNewMovie}>
+        <h3>Add a new entry</h3>
+        <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
+        <select value={newGenre} onChange={(e) => setNewGenre(e.target.value)}>
+          <option value=""></option>
+          <option value="Fantascienza">Fantascienza</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Romantico">Romantico</option>
+          <option value="Azione">Azione</option>
+        </select>
+        <button>Add</button>
+      </form>
+
     </>
   )
 }
