@@ -2,6 +2,80 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #2B2A33;
-  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+header {
+  padding: 20px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+input[type=text],
+select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* SEARCH BOX */
+.search-box {
+  width: 100%;
+  border: none;
+  outline: none;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box input {
+  width: 70%;
+}
+
+.search-box select {
+  width: 30%;
+}
+
+/* NEW ENTRY */
+form {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+form h3 {
+  width: 100%;
+  text-align: center;
+}
+
+form .input-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+form input {
+  width: 70%;
+}
+
+form select {
+  width: 30%;
+}
+
+form button {
+  width: 30%;
+  padding: 10px;
 }

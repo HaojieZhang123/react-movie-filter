@@ -3,7 +3,11 @@ import React from 'react'
 const Header = () => {
     return (
         <>
-            <h1>My Movie Library</h1>
+            <header>
+                <div className="container">
+                    <h1>My Movie Library</h1>
+                </div>
+            </header>
         </>
     )
 }

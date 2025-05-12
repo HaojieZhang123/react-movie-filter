@@ -54,54 +54,74 @@ function App() {
       <Header />
 
       {/* Box di ricerca */}
-      <div className="search-box">
+      <div className="container">
+        <div className="search-box">
 
-        {/* box di ricerca per il titolo */}
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+          {/* box di ricerca per il titolo */}
+          <input
+            type="text"
+            placeholder='Cerca per titolo'
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
 
-        {/* ricerca per genere */}
-        <select
-          name="genre"
-          id='genre-filter'
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
-        >
-          {/* Il controllo del genere avviene per controllo di inclusione di substring. Per selezionare tutti, uso una stringa vuota come sottostringa di controllo */}
-          <option value=""></option>
-          <option value="Fantascienza">Fantascienza</option>
-          <option value="Thriller">Thriller</option>
-          <option value="Romantico">Romantico</option>
-          <option value="Azione">Azione</option>
-        </select>
+          {/* ricerca per genere */}
+          <select
+            name="genre"
+            id='genre-filter'
+            value={genre}
+            onChange={(e) => setGenre(e.target.value)}
+          >
+            {/* Il controllo del genere avviene per controllo di inclusione di substring. Per selezionare tutti, uso una stringa vuota come sottostringa di controllo */}
+            <option value="">Scegli il genere</option>
+            <option value="Fantascienza">Fantascienza</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Romantico">Romantico</option>
+            <option value="Azione">Azione</option>
+          </select>
 
+        </div>
       </div>
 
-      <div className="movie-container">
-        <ul>
-          {filteredMovies.map((element, index) => (
-            <li key={`movie-${index}`}>
-              {element.title}
-            </li>
-          ))}
-        </ul>
+      {/* Movie list */}
+      <div className="container">
+        <div className="movie-container">
+          <ul>
+            {filteredMovies.map((element, index) => (
+              <li key={`movie-${index}`}>
+                {element.title}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
-      <form onSubmit={addNewMovie}>
-        <h3>Add a new entry</h3>
-        <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
-        <select value={newGenre} onChange={(e) => setNewGenre(e.target.value)}>
-          <option value=""></option>
-          <option value="Fantascienza">Fantascienza</option>
-          <option value="Thriller">Thriller</option>
-          <option value="Romantico">Romantico</option>
-          <option value="Azione">Azione</option>
-        </select>
-        <button>Add</button>
-      </form>
+      {/* Add new movie */}
+      <div className="container">
+        <form onSubmit={addNewMovie}>
+          <h2>Add a new entry</h2>
+          <div className='input-container'>
+            <input
+              type="text"
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+            />
+            <select
+              value={newGenre}
+              onChange={(e) => setNewGenre(e.target.value)}
+            >
+              <option value="">Scegli il genere</option>
+              <option value="Fantascienza">Fantascienza</option>
+              <option value="Thriller">Thriller</option>
+              <option value="Romantico">Romantico</option>
+              <option value="Azione">Azione</option>
+            </select>
+          </div>
+          <button>Add</button>
+        </form>
+      </div>
+
+
 
     </>
   )
