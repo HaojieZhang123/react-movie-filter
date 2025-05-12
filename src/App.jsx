@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const movieArray = [
   { title: 'Inception', genre: 'Fantascienza' },
@@ -11,6 +11,14 @@ const movieArray = [
 
 function App() {
 
+  const [movies, setMovies] = useState(movieArray)
+  const [genre, setGenre] = useState('');
+  const [filteredMovies, setFilteredMovies] = useState(movies)
+
+  useEffect(() => {
+    console.log(`genre changed: ${genre}`)
+  }, [genre])
+
   return (
     <>
       <h1>Movies</h1>
@@ -19,7 +27,8 @@ function App() {
 
         <input type="text" />
 
-        <select name="genre" id='genre-filter'>
+        <select name="genre" id='genre-filter' value={genre} onChange={(e) => setGenre(e.target.value)}>
+          <option value=""></option>
           <option value="Fantascienza">Fantascienza</option>
           <option value="Thriller">Thriller</option>
           <option value="Romantico">Romantico</option>
@@ -29,7 +38,7 @@ function App() {
 
       <div className="movie-container">
         <ul>
-          {movieArray.map((element, index) => (
+          {filteredMovies.map((element, index) => (
             <li key={`movie-${index}`}>
               {element.title}
             </li>
