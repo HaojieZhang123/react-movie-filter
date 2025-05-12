@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 
+// array iniziale
 const movieArray = [
   { title: 'Inception', genre: 'Fantascienza' },
   { title: 'Il Padrino', genre: 'Thriller' },
@@ -11,10 +12,16 @@ const movieArray = [
 
 function App() {
 
-  const [movies, setMovies] = useState(movieArray)
+  // Copia dell'array iniziale
+  const [movies, setMovies] = useState(movieArray);
+  // variabile di stato per il genere filtrato
   const [genre, setGenre] = useState('');
-  const [filteredMovies, setFilteredMovies] = useState(movies)
+  // variabile di stato per la ricerca per titolo
+  const [search, setSearch] = useState('');
+  // array con i film filtrati, e quelli mostrati in pagina
+  const [filteredMovies, setFilteredMovies] = useState(movies);
 
+  // filtro dell'array movies a seconda di genre. Restituire il risultato a filteredMovies per essere mostrato a schermo
   useEffect(() => {
     const filtered = movies.filter((element) =>
       element.genre.includes(genre)
@@ -22,21 +29,43 @@ function App() {
     setFilteredMovies(filtered)
   }, [genre])
 
+  // filtro per titolo, stessa idea di genere, applicato con lowercase per essere case insensitive
+  useEffect(() => {
+    const filtered = movies.filter((element) =>
+      element.title.toLowerCase().includes(search.toLowerCase())
+    )
+    setFilteredMovies(filtered)
+  }, [search])
+
   return (
     <>
       <h1>Movies</h1>
 
+      {/* Box di ricerca */}
       <div className="search-box">
 
-        <input type="text" />
+        {/* box di ricerca per il titolo */}
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-        <select name="genre" id='genre-filter' value={genre} onChange={(e) => setGenre(e.target.value)}>
+        {/* ricerca per genere */}
+        <select
+          name="genre"
+          id='genre-filter'
+          value={genre}
+          onChange={(e) => setGenre(e.target.value)}
+        >
+          {/* Il controllo del genere avviene per controllo di inclusione di substring. Per selezionare tutti, uso una stringa vuota come sottostringa di controllo */}
           <option value=""></option>
           <option value="Fantascienza">Fantascienza</option>
           <option value="Thriller">Thriller</option>
           <option value="Romantico">Romantico</option>
           <option value="Azione">Azione</option>
         </select>
+
       </div>
 
       <div className="movie-container">
