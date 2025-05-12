@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Header from './components/Header';
+import ListItem from './components/ListItem';
 
 // array iniziale
 const movieArray = [
@@ -88,9 +89,10 @@ function App() {
         <div className="movie-container">
           <ul>
             {filteredMovies.map((element, index) => (
-              <li key={`movie-${index}`}>
-                {element.title}
-              </li>
+              // <li key={`movie-${index}`}>
+              //   {element.title}
+              // </li>
+              <ListItem key={`movie-${index}`} element={element} />
             ))}
           </ul>
         </div>

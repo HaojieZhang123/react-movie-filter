@@ -6,7 +6,9 @@
 }
 
 header {
-  padding: 20px 0;
+  padding: 30px 0;
+  background-color: #2F80EC;
+  color: white;
 }
 
 .container {
@@ -26,8 +28,7 @@ select {
 /* SEARCH BOX */
 .search-box {
   width: 100%;
-  border: none;
-  outline: none;
+  padding: 20px 0;
 
   display: flex;
   justify-content: space-between;
@@ -43,10 +44,60 @@ select {
   width: 30%;
 }
 
+/* MOVIE LIST */
+
+.movie-container {
+  width: 100%;
+}
+
+.movie-container ul {
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Individual cards */
+.card {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.card-image {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.card-image img {
+  width: 100%;
+}
+
+.card-description {
+  width: 100%;
+}
+
+.card-title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.card-genre {
+  margin-bottom: 10px;
+}
+
+.card:hover {
+  background-color: #2F80EC;
+  color: white;
+}
+
 /* NEW ENTRY */
 form {
   width: 100%;
-
+  margin-bottom: 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -54,9 +105,11 @@ form {
   gap: 10px;
 }
 
-form h3 {
+form h2 {
   width: 100%;
   text-align: center;
+  color: #2F80EC;
+  margin-bottom: 20px;
 }
 
 form .input-container {
@@ -78,4 +131,12 @@ form select {
 form button {
   width: 30%;
   padding: 10px;
+  background-color: #2F80EC;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  opacity: 0.8;
 }
